@@ -49,9 +49,9 @@ Files I've added/amended from a new Laravel project download:
 
 To run the project, please run the following command in your terminal:
 
-npm run build && npm run dev
-php artisan serve
-Navigate to http://localhost:8000 in your browser to view the project
+1. `npm run build && npm run dev`
+2. `php artisan serve`
+3. Navigate to http://localhost:8000 in your browser to view the project
 
 ## Test Scenarios So Far:
 
