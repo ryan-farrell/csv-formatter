@@ -1,66 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<p align="left">
+<a href="https://github.com/ryan-farrell?tab=repositories">My Repos</a>
 </p>
+<hr>
 
-## About Laravel
+# CSV Formatter
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Technologies Used
+Laravel 10 / Tailwind / Blade
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Headline Steps / Considerations
+No DB or persistent data was required.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Created the phpunit test suite with TDD red-green-refactor approach.
 
-## Learning Laravel
+Once I had green tests, I created a new CSV using the cmd `php artisan app:homeowner-csv-formatted` to save a newly formatted version of your CSV after the require as visual confirmation.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+An example CSV is already saved in the `storage > app` folder and its this file that will get reformatted when the command is run. See dir `storage > app > formatted-csv` for output.
+Created a new frontend view for the HomeownerCSVController to allow the user to upload a file and submit it to the server. The server will then process the file, reformat and return rendered array in a table as per requirements.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Prerequisites
+You will need to have the following installed on your machine:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Laravel
+- Composer
+- NPM
 
-## Laravel Sponsors
+## Installation
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+To install the project, please run the following commands in your terminal:
 
-### Premium Partners
+1. Clone the repo > `git clone https://github.com/ryan-farrell/csv-formatter.git`
+2. cd into dir
+3. Install Composer packages > `composer install`
+4. Install NPM packages > `npm install`
+5. Check Unit Tests > `./vendor/bin/phpunit`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Files I've added/amended from a new Laravel project download:
 
-## Contributing
+- `Console > Commands > HomeownerCSVToFormattedCSV.php`
+- `Http > Controllers > HomeownerCSVController.php`
+- `Models > File > CSVFile > HomeownerCSV.php`
+- `Rules > HomeownerCsvStructure.php`
+- `Tests > Unit > HomeownerCSVFormatterTest.php`
+- `Resources > Views > 3 New Blade View Files`
+- `Added new routes to web.php`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Getting Started
 
-## Code of Conduct
+To run the project, please run the following command in your terminal:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+npm run build && npm run dev
+php artisan serve
+Navigate to http://localhost:8000 in your browser to view the project
 
-## Security Vulnerabilities
+## Test Scenarios So Far:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Attempted Empty file upload
+2. Attempted file NOT CSV type
+3. Attempted when file size is too large
+4. Attempted when file NOT the Expected Homeowner CSV
 
-## License
+## Considerations
+There is a couple of `@todo`'s which you can search for in the codebase. These my thoughts and things to improve upon once further requirements can be confirmed.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Future Improvements
+! Catching errors with try catch to display message on faulty upload and formatting. Issue with displaying information to a the user they shouldn't see.
